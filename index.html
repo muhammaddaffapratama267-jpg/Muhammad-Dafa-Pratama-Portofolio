@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio pribadi Dafa Pratama">
+    <title>Dafa Pratama | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a class="logo" href="#home">DAFA<span>.</span></a>
+            <button class="menu-button" type="button" aria-label="Buka menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#tentang">Tentang</a>
+                <a href="#keahlian">Keahlian</a>
+                <a href="#proyek">Proyek</a>
+                <a href="#kontak">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="home" class="container">
+        <div class="hero">
+            <div>
+                <p class="eyebrow">Halo, saya</p>
+                <h1>Dafa <span>Pratama</span></h1>
+                <p class="description">
+                    Saya adalah kreator digital dan pengembang yang tertarik membangun
+                    pengalaman web sederhana, menarik, dan mudah digunakan.
+                </p>
+                <div class="actions">
+                    <a class="button primary" href="#proyek">Lihat Proyek</a>
+                    <a class="button" href="#kontak">Hubungi Saya</a>
+                </div>
+            </div>
+
+            <div class="profile-card" aria-label="Inisial Dafa Pratama">
+                <div>
+                    <strong>DP</strong>
+                    <small>PORTFOLIO</small>
+                </div>
+            </div>
+        </div>
+
+        <section id="tentang" class="reveal">
+            <div class="section-heading">
+                <p>Tentang</p>
+                <h2>Menciptakan karya digital</h2>
+            </div>
+            <p class="description">
+                Saya suka belajar teknologi baru, membuat proyek kreatif, dan mengubah
+                ide menjadi tampilan yang dapat digunakan secara nyata.
+            </p>
+        </section>
+
+        <section id="keahlian" class="reveal">
+            <div class="section-heading">
+                <p>Keahlian</p>
+                <h2>Yang saya kuasai</h2>
+            </div>
+            <div class="skills">
+                <article class="skill">
+                    <h3>Web Development</h3>
+                    <p>Membuat halaman web responsif menggunakan HTML, CSS, dan JavaScript.</p>
+                </article>
+                <article class="skill">
+                    <h3>Python</h3>
+                    <p>Mengembangkan aplikasi, skrip otomatisasi, dan visualisasi sederhana.</p>
+                </article>
+                <article class="skill">
+                    <h3>UI/UX Design</h3>
+                    <p>Merancang antarmuka yang bersih, konsisten, dan mudah digunakan.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="proyek" class="reveal">
+            <div class="section-heading">
+                <p>Proyek</p>
+                <h2>Pekerjaan pilihan</h2>
+            </div>
+            <div class="projects">
+                <article class="project">
+                    <div class="project-preview">♡</div>
+                    <div class="project-content">
+                        <h3>Animasi Love Python</h3>
+                        <p>Visualisasi bentuk hati menggunakan Turtle Graphics dan matematika.</p>
+                        <a href="pyvisual.py">Lihat kode →</a>
+                    </div>
+                </article>
+                <article class="project">
+                    <div class="project-preview">♪</div>
+                    <div class="project-content">
+                        <h3>Lirik Lagu Terminal</h3>
+                        <p>Program Python yang menampilkan lirik dengan efek mengetik.</p>
+                        <a href="Untitled-1.py">Lihat kode →</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer id="kontak">
+        <div class="container">
+            <div>
+                <strong>Mari terhubung</strong>
+                <a href="mailto:muhammaddafapratama267@gmail.com">muhammaddafapratama267@gmail.com</a>
+            </div>
+            <div class="socials">
+                <a href="https://github.com/DafaPratama" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <a class="back-to-top" href="#home" aria-label="Kembali ke atas">↑</a>
+
+    <script>
+        const menuButton = document.querySelector(".menu-button");
+        const navLinks = document.querySelector("#nav-links");
+        const backToTop = document.querySelector(".back-to-top");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        navLinks.addEventListener("click", (event) => {
+            if (event.target.matches("a")) {
+                navLinks.classList.remove("open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.textContent = "☰";
+            }
+        });
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach((element) => {
+            revealObserver.observe(element);
+        });
+
+        window.addEventListener("scroll", () => {
+            backToTop.classList.toggle("visible", window.scrollY > 500);
+        }, { passive: true });
+    </script>
+</body>
+</html>
